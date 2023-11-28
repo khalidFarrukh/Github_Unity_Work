@@ -25,10 +25,11 @@ public class Bike_controller : MonoBehaviour
     [Header("Bike steering")]
     public float steeringAngle = 35f;
     private float presentTurnAngle = 0f;
+    
 
 
     private void Update()
-    {
+    {   
         MoveBike();
         SteerBike();
     }
