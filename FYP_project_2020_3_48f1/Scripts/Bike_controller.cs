@@ -25,13 +25,19 @@ public class Bike_controller : MonoBehaviour
     [Header("Bike steering")]
     public float steeringAngle = 35f;
     private float presentTurnAngle = 0f;
-    
 
 
+    private void FixedUpdate()
+    {
+        Vector3 rotation = transform.localEulerAngles;
+        rotation.z = 0;
+        transform.localEulerAngles = rotation;
+    }
     private void Update()
     {   
         MoveBike();
         SteerBike();
+        
     }
 
     private void MoveBike()
