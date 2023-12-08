@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Bike_controller : MonoBehaviour
 {
+    [Header("RigidBody")]
+    public Rigidbody rb;
+
     [Header("Wheel colliders")]
     public WheelCollider frontWheelCollider;
     public WheelCollider backWheelCollider;
@@ -34,16 +37,44 @@ public class Bike_controller : MonoBehaviour
         transform.localEulerAngles = rotation;
     }
     private void Update()
-    {   
+    {
+        Default();
         MoveBike();
+        ApplyBrake();
         SteerBike();
-        
     }
+    private void Default()
+    {
+        /*if (!Input.anyKey)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }*/
+    }
+
 
     private void MoveBike()
     {
         backWheelCollider.motorTorque = presentAcceleration;
         presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
+    }
+
+    private void ApplyBrake()
+    {
+        Rigidbody temprb = rb;
+       
+        if (Input.GetKey(KeyCode.Space)){
+            frontWheelCollider.brakeTorque = breakingForce;
+            backWheelCollider.brakeTorque = breakingForce;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        else if(!Input.GetKey(KeyCode.UpArrow))
+        {
+            frontWheelCollider.brakeTorque = 0;
+            backWheelCollider.brakeTorque = 0;
+            /*rb.velocity = new Vector3(0, 0, 0);*/
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+        }
+
     }
 
     private void SteerBike(){
