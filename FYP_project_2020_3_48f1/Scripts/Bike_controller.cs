@@ -29,6 +29,8 @@ public class Bike_controller : MonoBehaviour
     public float steeringAngle = 35f;
     private float presentTurnAngle = 0f;
 
+    private float counter=0;
+    int i = 0;
 
     private void FixedUpdate()
     {
@@ -54,6 +56,17 @@ public class Bike_controller : MonoBehaviour
 
     private void MoveBike()
     {
+        if (i < 60)
+        {
+            counter += Time.deltaTime;
+            i++;
+        }
+        else if (i == 60)
+        {
+            Debug.Log(counter);
+            i=0;
+            counter=0;
+        }
         backWheelCollider.motorTorque = presentAcceleration;
         presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
     }
