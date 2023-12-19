@@ -20,8 +20,8 @@ public class Bike_controller : MonoBehaviour
     public Transform cycleHandle;
 
     [Header("Bike Power")]
-    public float accelerationForce = 200f;
-    public float breakingForce = 3000f;
+    public float accelerationForce = 0f;
+    public float breakingForce = 200f;
     private float presentBreakForce = 0f;
     private float presentAcceleration = 0f;
 
@@ -56,17 +56,6 @@ public class Bike_controller : MonoBehaviour
 
     private void MoveBike()
     {
-        if (i < 60)
-        {
-            counter += Time.deltaTime;
-            i++;
-        }
-        else if (i == 60)
-        {
-            Debug.Log(counter);
-            i=0;
-            counter=0;
-        }
         backWheelCollider.motorTorque = presentAcceleration;
         presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
     }

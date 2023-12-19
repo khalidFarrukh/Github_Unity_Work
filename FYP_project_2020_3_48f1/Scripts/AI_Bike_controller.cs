@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AI_Bike_controller : MonoBehaviour
 {
+
     [Header("Wheel colliders")]
     public WheelCollider frontWheelCollider;
     public WheelCollider backWheelCollider;
@@ -26,7 +27,7 @@ public class AI_Bike_controller : MonoBehaviour
     public float maxSteerAngle = 22f;
     private float presentTurnAngle = 0f;
     private float targetSteerAngle = 0f;
-    private float turnSpeed = 15f;
+    private float turnSpeed = 5f;
 
     [Header("Waypoints")]
     public Transform waypoints;
@@ -45,7 +46,14 @@ public class AI_Bike_controller : MonoBehaviour
             }
         }
     }
+
     private void FixedUpdate()
+    {
+        Vector3 rotation = transform.localEulerAngles;
+        rotation.z = 0;
+        transform.localEulerAngles = rotation;
+    }
+    private void Update()
     {
         AI_Move();
         AI_Steer();
@@ -81,6 +89,6 @@ public class AI_Bike_controller : MonoBehaviour
     }
     private void LerpToSteerAngle()
     {
-	frontWheelCollider.steerAngle = Mathf.Lerp(frontWheelCollider.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
+        frontWheelCollider.steerAngle = Mathf.Lerp(frontWheelCollider.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
     }
 }
