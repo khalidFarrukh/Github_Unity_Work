@@ -18,28 +18,42 @@ public class GlobalCycleTrackChoice : MonoBehaviour
         if(TrackImport == 1)
         {
             Track1.SetActive(true);
+            Track2.SetActive(false);
+            Track3.SetActive(false);
+            Track4.SetActive(false);
+            Track5.SetActive(false);
         }
         if (TrackImport == 2)
         {
+            Track1.SetActive(false);
             Track2.SetActive(true);
+            Track3.SetActive(false);
+            Track4.SetActive(false);
+            Track5.SetActive(false);
         }
         if (TrackImport == 3)
         {
+            Track1.SetActive(false);
+            Track2.SetActive(false);
             Track3.SetActive(true);
+            Track4.SetActive(false);
+            Track5.SetActive(false);
         }
         if (TrackImport == 4)
         {
+            Track1.SetActive(false);
+            Track2.SetActive(false);
+            Track3.SetActive(false);
             Track4.SetActive(true);
+            Track5.SetActive(false);
         }
         if (TrackImport == 5)
         {
+            Track1.SetActive(false);
+            Track2.SetActive(false);
+            Track3.SetActive(false);
+            Track4.SetActive(false);
             Track5.SetActive(true);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -18,33 +18,57 @@ public class AI_Bike_controller : MonoBehaviour
     public Transform cycleHandle;
 
     [Header("Bike Power")]
-    public float accelerationForce = 200f;
-    public float breakingForce = 3000f;
+    public float maxSpeed = 15f;
+    public float maxMotorTorque = 10f;
+    public float currentSpeed;
+    public float maxBrakeTorque = 150f;
     private float presentBreakForce = 0f;
-    private float presentAcceleration = 0f;
+    public bool isBraking = false;
 
     [Header("Bike steering")]
-    public float maxSteerAngle = 22f;
+    public float maxSteerAngle = 35f;
     private float presentTurnAngle = 0f;
     private float targetSteerAngle = 0f;
     private float turnSpeed = 5f;
 
-    [Header("Waypoints")]
-    public Transform waypoints;
-    private List<Transform> nodes;
-    public int goal = 0;
+    [Header("AI Goal to follow")]
+    public Transform Track1_goal;
+    public Transform Track2_goal;
+    public Transform Track3_goal;
+    public Transform Track4_goal;
+    public Transform Track5_goal;
+    private Transform goal_to_follow;
+
+    [Header("cycle sensors")]
+
+
+    private GlobalCycleTrackChoice _GlobalCycleTrackChoice;
     private Vector3 relative_vector;
+    private void Awake()
+    {
+        goal_to_follow = Track1_goal;
+    }
     private void Start()
     {
-        Transform[] waypoint_objects = waypoints.GetComponentsInChildren<Transform>();
-        nodes = new List<Transform>();
-        for (int i=0; i<waypoint_objects.Length;i++)
+        /*goal_to_follow = Track1_goal;*/
+        /*switch (_GlobalCycleTrackChoice.TrackImport)
         {
-            if (waypoint_objects[i]!= waypoints.transform)
-            {
-                nodes.Add(waypoint_objects[i]);
-            }
-        }
+            case 1:
+                goal_to_follow = Track1_goal;
+                break;
+            case 2:
+                goal_to_follow = Track2_goal;
+                break;
+            case 3:
+                goal_to_follow = Track3_goal;
+                break;
+            case 4:
+                goal_to_follow = Track4_goal;
+                break;
+            case 5:   
+                goal_to_follow = Track5_goal;
+                break;
+        }*/
     }
 
     private void FixedUpdate()
@@ -52,40 +76,43 @@ public class AI_Bike_controller : MonoBehaviour
         Vector3 rotation = transform.localEulerAngles;
         rotation.z = 0;
         transform.localEulerAngles = rotation;
-    }
-    private void Update()
-    {
         AI_Move();
+        AI_Braking();
         AI_Steer();
-	CheckWaypointDistance();
     }
 
     private void AI_Steer()
     {
-        relative_vector = transform.InverseTransformPoint(nodes[goal].position);
-        //frontWheelCollider.steerAngle = (relative_vector.x / relative_vector.magnitude) * maxSteerAngle;
+        relative_vector = transform.InverseTransformPoint(goal_to_follow.position);
         targetSteerAngle = (relative_vector.x / relative_vector.magnitude) * maxSteerAngle;
-	LerpToSteerAngle();
-
+	    LerpToSteerAngle();
     }
     private void AI_Move()
     {
-        backWheelCollider.motorTorque = presentAcceleration;
-        presentAcceleration = accelerationForce * 1;
+        currentSpeed = 2 * Mathf.PI * backWheelCollider.radius * backWheelCollider.rpm * 60 / 1000;
+        if (currentSpeed < maxSpeed && !isBraking)
+        {
+            backWheelCollider.motorTorque = maxMotorTorque;
+        }
+        else
+        {
+            backWheelCollider.motorTorque = 0;
+        }
     }
-    private void CheckWaypointDistance()
+
+    private void AI_Braking()
     {
-	if(Vector3.Distance(transform.position,nodes[goal].position)<1.5f)
-	{
-	    if(goal == nodes.Count-1)
-	    {
-		goal = 0;
-	    }
-	    else
-	    {
-		goal++;
-	    }
-	}
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isBraking = true;
+            frontWheelCollider.brakeTorque = maxBrakeTorque;
+        }
+        else
+        {
+            isBraking = false;
+            frontWheelCollider.brakeTorque = 0;
+        }
     }
     private void LerpToSteerAngle()
     {
