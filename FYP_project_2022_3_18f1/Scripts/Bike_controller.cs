@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Threading.Tasks;
 public class Bike_controller : MonoBehaviour
 {
     [Header("RigidBody")]
@@ -20,17 +20,23 @@ public class Bike_controller : MonoBehaviour
     public Transform cycleHandle;
 
     [Header("Bike Power")]
-    public float maxSpeed = 15f;
-    public float maxMotorTorque = 10f;
+    public float maxSpeed = 60f;
+    public float maxMotorTorque = 15f;
     public float currentSpeed;
     public float maxBrakeTorque = 150f;
     private float presentBreakForce = 0f;
-    private bool isBraking = false;
 
     [Header("Bike steering")]
     public float maxSteerAngle = 35f;
     private float presentTurnAngle = 0f;
 
+    float verticalInput = 0f;
+    float HorizontalInput = 0f;
+
+    public static bool isDownbtn;
+    public static bool isRightbtn;
+    public static bool isLeftbtn;
+    public static bool isBrakingbtn;
 
     private void FixedUpdate()
     {
@@ -50,7 +56,15 @@ public class Bike_controller : MonoBehaviour
         currentSpeed = 2 * Mathf.PI * backWheelCollider.radius * backWheelCollider.rpm * 60 / 1000;
         if (currentSpeed < maxSpeed)
         {
-            backWheelCollider.motorTorque = maxMotorTorque* Input.GetAxis("Vertical");
+
+            if (Input.GetKey(KeyCode.S)|| isDownbtn)
+            {
+                backWheelCollider.motorTorque =-1* maxMotorTorque;
+            }
+            else
+            {
+                backWheelCollider.motorTorque = 1 * maxMotorTorque;
+            }
         }
         else
         {
@@ -58,18 +72,21 @@ public class Bike_controller : MonoBehaviour
         }
     }
 
+    async void Delay(int v)
+    {
+        await Task.Delay(v);
+    }
+
     private void ApplyBrake()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || isBrakingbtn)
         {
-            isBraking = true;
             frontWheelCollider.brakeTorque = maxBrakeTorque;
             backWheelCollider.brakeTorque = maxBrakeTorque;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
         {
-            isBraking = false;
             frontWheelCollider.brakeTorque = 0;
             backWheelCollider.brakeTorque = 0;
             rb.constraints = RigidbodyConstraints.FreezeRotationZ;
@@ -77,7 +94,27 @@ public class Bike_controller : MonoBehaviour
     }
 
     private void SteerBike(){
-        presentTurnAngle = maxSteerAngle * Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || isRightbtn)
+        {
+            if (HorizontalInput < 1f)
+            {
+                Delay(150);
+                HorizontalInput += 0.1f;
+            }
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || isLeftbtn)
+        {
+            if (HorizontalInput > -1f)
+            {
+                Delay(150);
+                HorizontalInput -= 0.1f;
+            }
+        }
+        else
+        {
+            HorizontalInput = 0;
+        }
+        presentTurnAngle = maxSteerAngle * HorizontalInput;
         frontWheelCollider.steerAngle = presentTurnAngle;
         movewheels(frontWheelCollider, frontWheelTransform);
         movewheels(backWheelCollider, backWheelTransform);

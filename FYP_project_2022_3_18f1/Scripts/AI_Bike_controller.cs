@@ -44,13 +44,13 @@ public class AI_Bike_controller : MonoBehaviour
 
     private GlobalCycleTrackChoice _GlobalCycleTrackChoice;
     private Vector3 relative_vector;
-    private void Awake()
+   /* private void Awake()
     {
         goal_to_follow = Track1_goal;
-    }
+    }*/
     private void Start()
     {
-        /*goal_to_follow = Track1_goal;*/
+        goal_to_follow = Track1_goal;
         /*switch (_GlobalCycleTrackChoice.TrackImport)
         {
             case 1:
@@ -65,7 +65,7 @@ public class AI_Bike_controller : MonoBehaviour
             case 4:
                 goal_to_follow = Track4_goal;
                 break;
-            case 5:   
+            case 5:
                 goal_to_follow = Track5_goal;
                 break;
         }*/
