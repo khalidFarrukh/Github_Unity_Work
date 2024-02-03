@@ -44,13 +44,13 @@ public class AI_Bike_controller : MonoBehaviour
 
     private GlobalCycleTrackChoice _GlobalCycleTrackChoice;
     private Vector3 relative_vector;
-   /* private void Awake()
+    private void Awake()
     {
         goal_to_follow = Track1_goal;
-    }*/
+    }
     private void Start()
     {
-        goal_to_follow = Track1_goal;
+        /*goal_to_follow = Track1_goal;*/
         /*switch (_GlobalCycleTrackChoice.TrackImport)
         {
             case 1:
@@ -76,7 +76,10 @@ public class AI_Bike_controller : MonoBehaviour
         Vector3 rotation = transform.localEulerAngles;
         rotation.z = 0;
         transform.localEulerAngles = rotation;
-        AI_Move();
+        if (Timer_script.PlayerCanMove)
+        {
+            AI_Move();
+        }
         AI_Braking();
         AI_Steer();
     }

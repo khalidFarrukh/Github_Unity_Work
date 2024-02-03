@@ -21,49 +21,72 @@ public class Bike_controller : MonoBehaviour
 
     [Header("Bike Power")]
     public float maxSpeed = 60f;
-    public float maxMotorTorque = 15f;
-    public float currentSpeed;
+    public float maxForwardMotorTorque = 15f;
+    public float maxReverseMotorTorque = 7f;
+    public float currentSpeed=0f;
     public float maxBrakeTorque = 150f;
     private float presentBreakForce = 0f;
 
     [Header("Bike steering")]
-    public float maxSteerAngle = 35f;
+    public float maxSteerAngle = 11f;
     private float presentTurnAngle = 0f;
 
     float verticalInput = 0f;
     float HorizontalInput = 0f;
 
-    public static bool isDownbtn;
+    public static bool isReverseBtn;
     public static bool isRightbtn;
     public static bool isLeftbtn;
     public static bool isBrakingbtn;
+
+    [SerializeField] private float TempCurrentSpeed;
+
+    [SerializeField] private AudioSource BackTireSound;
 
     private void FixedUpdate()
     {
         Vector3 rotation = transform.localEulerAngles;
         rotation.z = 0;
         transform.localEulerAngles = rotation;
+
+        float pitch = Mathf.Lerp(0, 0.5f, currentSpeed / maxForwardMotorTorque);
+        float volume = Mathf.Lerp(0, 0.5f, currentSpeed / maxForwardMotorTorque);
+        var localVel = transform.InverseTransformDirection(rb.velocity);
+        
+        /*if (!isReverseBtn && currentSpeed >= 0)
+        {
+            BackTireSound.volume = volume;
+            BackTireSound.pitch = pitch;
+        }
+        else
+        {
+            BackTireSound.volume = 0;
+            BackTireSound.pitch = 0;
+        }*/
     }
     private void Update()
     {
-        MoveBike();
+        if (Timer_script.PlayerCanMove)
+        {
+            MoveBike();
+        }
         ApplyBrake();
         SteerBike();
     }
 
     private void MoveBike()
     {
-        currentSpeed = 2 * Mathf.PI * backWheelCollider.radius * backWheelCollider.rpm * 60 / 1000;
+        currentSpeed = rb.velocity.magnitude * 3.6F;
+        
         if (currentSpeed < maxSpeed)
         {
-
-            if (Input.GetKey(KeyCode.S)|| isDownbtn)
+            if (Input.GetKey(KeyCode.S)|| isReverseBtn)
             {
-                backWheelCollider.motorTorque =-1* maxMotorTorque;
+                backWheelCollider.motorTorque = -1* maxReverseMotorTorque;;
             }
             else
             {
-                backWheelCollider.motorTorque = 1 * maxMotorTorque;
+                backWheelCollider.motorTorque = maxForwardMotorTorque;
             }
         }
         else

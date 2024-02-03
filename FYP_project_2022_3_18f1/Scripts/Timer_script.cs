@@ -11,6 +11,13 @@ public class Timer_script : MonoBehaviour
     [SerializeField] private AudioSource Go_beep;
     [SerializeField] private TMP_Text Text;
     // Update is called once per frame
+    public static bool PlayerCanMove;
+    private void Awake()
+    {
+        PlayerCanMove = false;
+        Timer.SetActive(true);
+        Controls.SetActive(false);
+    }
     private void Start()
     {
         StartCoroutine(CountStart());
@@ -30,6 +37,7 @@ public class Timer_script : MonoBehaviour
         yield return new WaitForSeconds(1.07f);
         Timer.SetActive(false);
         Controls.SetActive(true);
+        PlayerCanMove=true;
     }
 
 }
