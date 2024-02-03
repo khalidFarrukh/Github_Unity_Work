@@ -15,6 +15,11 @@ public class Bike_controller : MonoBehaviour
     [Header("Wheel Transform")]
     public Transform frontWheelTransform;
     public Transform backWheelTransform;
+    public float TireRotateFactor = 2f;
+    public float currentTireRotation;
+
+    [Header("Cycle Pivot Transform")]
+    public Transform cyclePivot;
 
     [Header("Handle Transform")]
     public Transform cycleHandle;
@@ -29,7 +34,7 @@ public class Bike_controller : MonoBehaviour
 
     [Header("Bike steering")]
     public float maxSteerAngle = 11f;
-    private float presentTurnAngle = 0f;
+    private float CurrentSteeringAngle = 0f;
 
     float verticalInput = 0f;
     float HorizontalInput = 0f;
@@ -72,6 +77,8 @@ public class Bike_controller : MonoBehaviour
         }
         ApplyBrake();
         SteerBike();
+        Set_turning_transformation_to_cycle();
+        Make_Tires_rotate_wrt_speed();
     }
 
     private void MoveBike()
@@ -80,13 +87,24 @@ public class Bike_controller : MonoBehaviour
         
         if (currentSpeed < maxSpeed)
         {
-            if (Input.GetKey(KeyCode.S)|| isReverseBtn)
+            if (Input.GetKey(KeyCode.S) || isReverseBtn)
             {
-                backWheelCollider.motorTorque = -1* maxReverseMotorTorque;;
+                backWheelCollider.motorTorque = -1 * maxReverseMotorTorque; ;
             }
             else
             {
-                backWheelCollider.motorTorque = maxForwardMotorTorque;
+                if (currentSpeed <= 10f)
+                {
+                    backWheelCollider.motorTorque = 15f;
+                }
+                else if (currentSpeed > 10f && currentSpeed<=25f)
+                {
+                    backWheelCollider.motorTorque = 16f;
+                }
+               /* else if (currentSpeed > 10f)
+                {
+                    backWheelCollider.motorTorque = 20f;
+                }*/
             }
         }
         else
@@ -104,8 +122,9 @@ public class Bike_controller : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) || isBrakingbtn)
         {
-            frontWheelCollider.brakeTorque = maxBrakeTorque;
-            backWheelCollider.brakeTorque = maxBrakeTorque;
+            /*frontWheelCollider.brakeTorque = maxBrakeTorque;*/
+            frontWheelCollider.brakeTorque = Mathf.MoveTowards(40f, maxBrakeTorque, 15 * Time.deltaTime);
+            backWheelCollider.brakeTorque = Mathf.MoveTowards(40f, maxBrakeTorque, 15 * Time.deltaTime);
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
@@ -119,35 +138,33 @@ public class Bike_controller : MonoBehaviour
     private void SteerBike(){
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || isRightbtn)
         {
-            if (HorizontalInput < 1f)
-            {
-                Delay(150);
-                HorizontalInput += 0.1f;
-            }
+            HorizontalInput = Mathf.MoveTowards(HorizontalInput, 1f, 3 * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || isLeftbtn)
         {
-            if (HorizontalInput > -1f)
-            {
-                Delay(150);
-                HorizontalInput -= 0.1f;
-            }
+            HorizontalInput = Mathf.MoveTowards(HorizontalInput, -1f, 3 * Time.deltaTime);
         }
         else
         {
-            HorizontalInput = 0;
+            HorizontalInput = Mathf.MoveTowards(HorizontalInput, 0f, 3 *Time.deltaTime);
         }
-        presentTurnAngle = maxSteerAngle * HorizontalInput;
-        frontWheelCollider.steerAngle = presentTurnAngle;
-        movewheels(frontWheelCollider, frontWheelTransform);
-        movewheels(backWheelCollider, backWheelTransform);
+        CurrentSteeringAngle = maxSteerAngle * HorizontalInput;
+        frontWheelCollider.steerAngle = CurrentSteeringAngle;
     }
-
-    private void movewheels(WheelCollider WC, Transform WT)
+    private void Set_turning_transformation_to_cycle()
     {
-        Vector3 position;
-        Quaternion rotation;
-        WC.GetWorldPose(out position, out rotation);
+        cycleHandle.localEulerAngles = new Vector3(0f, CurrentSteeringAngle, 0f);
+        if (currentSpeed != 0f)
+        {
+            cyclePivot.localEulerAngles = new Vector3(0f, 0f, -1 * CurrentSteeringAngle * 3);
+        }
+    }
+    private void Make_Tires_rotate_wrt_speed()
+    {
+        currentTireRotation += currentSpeed;
+        currentTireRotation %= 360;
+        frontWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
+        backWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
     }
 
 }

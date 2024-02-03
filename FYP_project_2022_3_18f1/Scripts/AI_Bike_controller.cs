@@ -5,14 +5,21 @@ using UnityEngine;
 
 public class AI_Bike_controller : MonoBehaviour
 {
+    [Header("RigidBody")]
+    public Rigidbody rb;
 
     [Header("Wheel colliders")]
     public WheelCollider frontWheelCollider;
     public WheelCollider backWheelCollider;
-
+    
     [Header("Wheel Transform")]
     public Transform frontWheelTransform;
     public Transform backWheelTransform;
+    public float TireRotateFactor = 2f;
+    public float currentTireRotation;
+
+    [Header("Cycle Pivot Transform")]
+    public Transform cyclePivot;
 
     [Header("Handle Transform")]
     public Transform cycleHandle;
@@ -20,14 +27,15 @@ public class AI_Bike_controller : MonoBehaviour
     [Header("Bike Power")]
     public float maxSpeed = 15f;
     public float maxMotorTorque = 10f;
-    public float currentSpeed;
+    public float currentSpeed = 0f;
     public float maxBrakeTorque = 150f;
     private float presentBreakForce = 0f;
     public bool isBraking = false;
 
     [Header("Bike steering")]
     public float maxSteerAngle = 35f;
-    private float presentTurnAngle = 0f;
+    public float maxTiltAngle = 22f;
+    public float CurrentSteeringAngle;
     private float targetSteerAngle = 0f;
     private float turnSpeed = 5f;
 
@@ -40,6 +48,7 @@ public class AI_Bike_controller : MonoBehaviour
     private Transform goal_to_follow;
 
     [Header("cycle sensors")]
+
 
 
     private GlobalCycleTrackChoice _GlobalCycleTrackChoice;
@@ -70,7 +79,6 @@ public class AI_Bike_controller : MonoBehaviour
                 break;
         }*/
     }
-
     private void FixedUpdate()
     {
         Vector3 rotation = transform.localEulerAngles;
@@ -82,6 +90,8 @@ public class AI_Bike_controller : MonoBehaviour
         }
         AI_Braking();
         AI_Steer();
+        Set_turning_transformation_to_cycle();
+        Make_Tires_rotate_wrt_speed();
     }
 
     private void AI_Steer()
@@ -92,7 +102,7 @@ public class AI_Bike_controller : MonoBehaviour
     }
     private void AI_Move()
     {
-        currentSpeed = 2 * Mathf.PI * backWheelCollider.radius * backWheelCollider.rpm * 60 / 1000;
+        currentSpeed = rb.velocity.magnitude * 3.6F;
         if (currentSpeed < maxSpeed && !isBraking)
         {
             backWheelCollider.motorTorque = maxMotorTorque;
@@ -106,7 +116,7 @@ public class AI_Bike_controller : MonoBehaviour
     private void AI_Braking()
     {
 
-        if (Input.GetKey(KeyCode.Space))
+        /*if (Input.GetKey(KeyCode.Space))
         {
             isBraking = true;
             frontWheelCollider.brakeTorque = maxBrakeTorque;
@@ -115,10 +125,24 @@ public class AI_Bike_controller : MonoBehaviour
         {
             isBraking = false;
             frontWheelCollider.brakeTorque = 0;
-        }
+        }*/
     }
     private void LerpToSteerAngle()
     {
-        frontWheelCollider.steerAngle = Mathf.Lerp(frontWheelCollider.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
+        CurrentSteeringAngle = Mathf.Lerp(frontWheelCollider.steerAngle, targetSteerAngle, Time.fixedDeltaTime * turnSpeed);
+        frontWheelCollider.steerAngle = CurrentSteeringAngle;
+        
+    }
+    private void Set_turning_transformation_to_cycle()
+    {
+        cycleHandle.localEulerAngles = new Vector3(0f, CurrentSteeringAngle, 0f);
+        cyclePivot.localEulerAngles = new Vector3(0f, 0f, -1*CurrentSteeringAngle*3);
+    }
+    private void Make_Tires_rotate_wrt_speed()
+    {
+        currentTireRotation += currentSpeed;
+        currentTireRotation %= 360;
+        frontWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
+        backWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
     }
 }

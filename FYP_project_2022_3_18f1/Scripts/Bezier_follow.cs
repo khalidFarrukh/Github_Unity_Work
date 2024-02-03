@@ -50,7 +50,7 @@ public class Bezier_follow : MonoBehaviour
         p3 = segments[segmentNumber].GetChild(2).position;
         while (tParam < 1)
         {
-            if (Vector3.Distance(transform.position, Host.position) > 3f)
+            if (Vector3.Distance(transform.position, Host.position) > 6f)
             {
                 stopF = 0f;
             }
