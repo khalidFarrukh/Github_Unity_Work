@@ -20,9 +20,15 @@ public class AI_Bike_controller : MonoBehaviour
 
     [Header("Cycle Pivot Transform")]
     public Transform cyclePivot;
+    public float maxTiltAngle = 6f;
+    private float CurrentTiltingAngle = 0f;
 
     [Header("Handle Transform")]
     public Transform cycleHandle;
+
+    [Header("Cycle pedal Transform")]
+    public Transform cycle_pedal;
+    public float currentPedalRotation;
 
     [Header("Bike Power")]
     public float maxSpeed = 15f;
@@ -33,8 +39,7 @@ public class AI_Bike_controller : MonoBehaviour
     public bool isBraking = false;
 
     [Header("Bike steering")]
-    public float maxSteerAngle = 35f;
-    public float maxTiltAngle = 22f;
+    public float maxSteerAngle = 11f;
     public float CurrentSteeringAngle;
     private float targetSteerAngle = 0f;
     private float turnSpeed = 5f;
@@ -92,10 +97,19 @@ public class AI_Bike_controller : MonoBehaviour
         AI_Steer();
         Set_turning_transformation_to_cycle();
         Make_Tires_rotate_wrt_speed();
+        pedal_rotation();
     }
 
     private void AI_Steer()
     {
+        if (currentSpeed < 5f)
+        {
+            maxSteerAngle = 22f;
+        }
+        else
+        {
+            maxSteerAngle = 11f;
+        }
         relative_vector = transform.InverseTransformPoint(goal_to_follow.position);
         targetSteerAngle = (relative_vector.x / relative_vector.magnitude) * maxSteerAngle;
 	    LerpToSteerAngle();
@@ -135,8 +149,8 @@ public class AI_Bike_controller : MonoBehaviour
     }
     private void Set_turning_transformation_to_cycle()
     {
-        cycleHandle.localEulerAngles = new Vector3(0f, CurrentSteeringAngle, 0f);
-        cyclePivot.localEulerAngles = new Vector3(0f, 0f, -1*CurrentSteeringAngle*3);
+        cycleHandle.localEulerAngles = new Vector3(0f, 1.5f*CurrentSteeringAngle, 0f);
+        cyclePivot.localEulerAngles = new Vector3(0f, 0f, -1*CurrentSteeringAngle);
     }
     private void Make_Tires_rotate_wrt_speed()
     {
@@ -144,5 +158,14 @@ public class AI_Bike_controller : MonoBehaviour
         currentTireRotation %= 360;
         frontWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
         backWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
+        
+    }
+    private void pedal_rotation()
+    {
+        currentPedalRotation += currentSpeed;
+        currentPedalRotation %= 360;
+        cycle_pedal.localEulerAngles = new Vector3(currentPedalRotation, 0f, 0f);
+        cycle_pedal.GetChild(0).transform.localEulerAngles = new Vector3(-1* currentPedalRotation, 0f, 0f);
+        cycle_pedal.GetChild(1).transform.localEulerAngles = new Vector3(currentPedalRotation, 0f, 0f);
     }
 }

@@ -20,9 +20,15 @@ public class Bike_controller : MonoBehaviour
 
     [Header("Cycle Pivot Transform")]
     public Transform cyclePivot;
+    public float maxTiltAngle = 6f;
+    private float CurrentTiltingAngle = 0f;
 
     [Header("Handle Transform")]
     public Transform cycleHandle;
+    
+    [Header("Cycle pedal Transform")]
+    public Transform cycle_pedal;
+    public float currentPedalRotation;
 
     [Header("Bike Power")]
     public float maxSpeed = 60f;
@@ -43,6 +49,7 @@ public class Bike_controller : MonoBehaviour
     public static bool isRightbtn;
     public static bool isLeftbtn;
     public static bool isBrakingbtn;
+    public static bool isSprintbtn;
 
     [SerializeField] private float TempCurrentSpeed;
 
@@ -79,6 +86,7 @@ public class Bike_controller : MonoBehaviour
         SteerBike();
         Set_turning_transformation_to_cycle();
         Make_Tires_rotate_wrt_speed();
+        pedal_rotation();
     }
 
     private void MoveBike()
@@ -148,15 +156,29 @@ public class Bike_controller : MonoBehaviour
         {
             HorizontalInput = Mathf.MoveTowards(HorizontalInput, 0f, 3 *Time.deltaTime);
         }
+        if (currentSpeed < 5f)
+        {
+            maxSteerAngle = 22f;
+        }
+        else
+        {
+            maxSteerAngle = Mathf.MoveTowards(maxSteerAngle, 11f, 3 * Time.deltaTime);
+        }
         CurrentSteeringAngle = maxSteerAngle * HorizontalInput;
         frontWheelCollider.steerAngle = CurrentSteeringAngle;
+       
     }
     private void Set_turning_transformation_to_cycle()
     {
+        CurrentTiltingAngle = maxTiltAngle * HorizontalInput;
         cycleHandle.localEulerAngles = new Vector3(0f, CurrentSteeringAngle, 0f);
-        if (currentSpeed != 0f)
+        if (currentSpeed > 1.5f && !Input.GetKey(KeyCode.S))
         {
-            cyclePivot.localEulerAngles = new Vector3(0f, 0f, -1 * CurrentSteeringAngle * 3);
+            cyclePivot.localEulerAngles = new Vector3(0f, 0f, -1 * CurrentTiltingAngle * 3);
+        }
+        else if(currentSpeed > 1.5f &&Input.GetKey(KeyCode.S) || isReverseBtn)
+        {
+            cyclePivot.localEulerAngles = Vector3.zero;
         }
     }
     private void Make_Tires_rotate_wrt_speed()
@@ -165,6 +187,14 @@ public class Bike_controller : MonoBehaviour
         currentTireRotation %= 360;
         frontWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
         backWheelTransform.localEulerAngles = new Vector3(currentTireRotation, 0f, 0f);
+    }
+    private void pedal_rotation()
+    {
+        currentPedalRotation += currentSpeed;
+        currentPedalRotation %= 360;
+        cycle_pedal.localEulerAngles = new Vector3(currentPedalRotation, 0f, 0f);
+        cycle_pedal.GetChild(0).transform.localEulerAngles = new Vector3(-1 * currentPedalRotation, 0f, 0f);
+        cycle_pedal.GetChild(1).transform.localEulerAngles = new Vector3(currentPedalRotation, 0f, 0f);
     }
 
 }
