@@ -24,7 +24,7 @@ public class Bike_controller : MonoBehaviour
 
     [Header("Handle Transform")]
     [SerializeField] private Transform cycleHandle;
-
+    
     [Header("Cycle pedal Transform")]
     [SerializeField] private Transform cycle_pedal;
     [SerializeField] private float currentPedalRotation;
@@ -33,9 +33,9 @@ public class Bike_controller : MonoBehaviour
     [SerializeField] private float maxForwadSpeed = 15f;
     [SerializeField] private float maxReverseSpeed = -10f;
     [SerializeField] private float maxMotorTorque = 11f;
-    public static float currentForwardSpeed = 0f;
-    [SerializeField] private float currentForwardSpeedTemp = 0f;
-    [SerializeField] private float currentReverseSpeed = 0f;
+    public static float currentForwardSpeed=0f;
+    [SerializeField] private float currentForwardSpeedTemp= 0f;
+    [SerializeField] private float currentReverseSpeed=0f;
     [SerializeField] private float maxBrakeTorque = 150f;
     [SerializeField] private float presentBreakForce = 0f;
 
@@ -68,7 +68,7 @@ public class Bike_controller : MonoBehaviour
             BackTireSound.volume = Mathf.Lerp(0, 0.5f, currentForwardSpeed / maxForwadSpeed);
             BackTireSound.pitch = Mathf.Lerp(0, 0.5f, currentForwardSpeed / maxForwadSpeed);
         }
-        else if (!isReverseBtn && currentReverseSpeed <= 0 || isReverseBtn && currentReverseSpeed <= 0)
+        else if(!isReverseBtn && currentReverseSpeed <= 0 || isReverseBtn && currentReverseSpeed <= 0)
         {
             BackTireSound.volume = Mathf.Lerp(0, 0.2f, currentReverseSpeed / maxForwadSpeed);
             BackTireSound.pitch = Mathf.Lerp(0, 0.2f, currentReverseSpeed / maxForwadSpeed);
@@ -77,8 +77,7 @@ public class Bike_controller : MonoBehaviour
         {
             BackTireSound.volume = 0;
             BackTireSound.pitch = 0;
-        }
-        if (Timer_script.PlayerCanMove)
+        }if (Timer_script.PlayerCanMove)
         {
             currentForwardSpeedTemp = currentForwardSpeed;
             MoveBike();
@@ -97,49 +96,37 @@ public class Bike_controller : MonoBehaviour
         {
             currentForwardSpeed = rb.velocity.magnitude * 3.6F;
         }
-        else if (localVel.z < 0)
+        else
         {
             currentReverseSpeed = rb.velocity.magnitude * -3.6F;
         }
-        else
+        if (!Input.GetKey(KeyCode.S)||!isReverseBtn)
         {
-            currentForwardSpeed = 0f;
-            currentReverseSpeed = 0f;
-        }
-        if (!Input.GetKey(KeyCode.S) || !isReverseBtn)
-        {
-            if (currentReverseSpeed > 0 && currentForwardSpeed < maxForwadSpeed)
-            {
-                currentReverseSpeed = Mathf.Lerp(currentReverseSpeed, 0f, 3 * Time.deltaTime);
-            }
-            if (currentForwardSpeed > 0 && currentForwardSpeed < maxForwadSpeed)
+            if (currentForwardSpeed < maxForwadSpeed)
             {
                 if (!isSprintbtn)
                 {
                     maxForwadSpeed = 10f;
-                    maxMotorTorque = 10f;
+                    backWheelCollider.motorTorque = Mathf.MoveTowards(backWheelCollider.motorTorque, maxMotorTorque, Time.deltaTime * 3f);
                 }
                 else
                 {
                     maxForwadSpeed = 20f;
-                    maxMotorTorque = 15f;
+                    backWheelCollider.motorTorque = Mathf.MoveTowards(backWheelCollider.motorTorque, maxMotorTorque+5f, Time.deltaTime * 3f);
                 }
-                backWheelCollider.motorTorque = Mathf.MoveTowards(backWheelCollider.motorTorque, maxMotorTorque, Time.deltaTime * 3f);
             }
             else
             {
                 backWheelCollider.motorTorque = 0;
             }
         }
-        if (Input.GetKey(KeyCode.S) || isReverseBtn)
+        if (Input.GetKey(KeyCode.S)||isReverseBtn)
         {
-            if (currentForwardSpeed > 0 && currentForwardSpeed < maxForwadSpeed)
+            if (currentReverseSpeed > maxReverseSpeed)
             {
-                currentForwardSpeed = Mathf.Lerp(currentForwardSpeed, 0f, 3 * Time.deltaTime);
-            }
-            if (currentReverseSpeed < 0 && currentReverseSpeed > maxReverseSpeed)
-            {
+
                 backWheelCollider.motorTorque = -maxMotorTorque;
+
             }
             else
             {
@@ -153,11 +140,11 @@ public class Bike_controller : MonoBehaviour
         var localVel = transform.InverseTransformDirection(rb.velocity);
         if (Input.GetKey(KeyCode.Space) || isBrakingbtn)
         {
-            if (localVel.z > 0)
+            if(localVel.z > 0)
             {
                 currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, 0f, 15 * Time.deltaTime);
             }
-            else if (localVel.z < 0)
+            else if(localVel.z < 0)
             {
                 currentReverseSpeed = Mathf.MoveTowards(currentReverseSpeed, 0f, 15 * Time.deltaTime);
             }
@@ -178,8 +165,7 @@ public class Bike_controller : MonoBehaviour
         }
     }
 
-    private void SteerBike()
-    {
+    private void SteerBike(){
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || isRightbtn)
         {
             HorizontalInput = Mathf.MoveTowards(HorizontalInput, 1f, 3 * Time.deltaTime);
@@ -190,7 +176,7 @@ public class Bike_controller : MonoBehaviour
         }
         else
         {
-            HorizontalInput = Mathf.MoveTowards(HorizontalInput, 0f, 3 * Time.deltaTime);
+            HorizontalInput = Mathf.MoveTowards(HorizontalInput, 0f, 3 *Time.deltaTime);
         }
         if (currentForwardSpeed < 5f)
         {
@@ -202,7 +188,7 @@ public class Bike_controller : MonoBehaviour
         }
         CurrentSteeringAngle = maxSteerAngle * HorizontalInput;
         frontWheelCollider.steerAngle = CurrentSteeringAngle;
-
+       
     }
     private void Set_turning_transformation_to_cycle()
     {
@@ -250,7 +236,7 @@ public class Bike_controller : MonoBehaviour
         currentPedalRotation %= 360;
         cycle_pedal.localEulerAngles = new Vector3(currentPedalRotation, 0f, 0f);
         cycle_pedal.GetChild(0).transform.localEulerAngles = new Vector3(-1 * currentPedalRotation, 0f, 0f);
-        cycle_pedal.GetChild(1).transform.localEulerAngles = new Vector3(-1 * currentPedalRotation, 0f, 0f);
+        cycle_pedal.GetChild(1).transform.localEulerAngles = new Vector3(-1* currentPedalRotation, 0f, 0f);
     }
 
 }

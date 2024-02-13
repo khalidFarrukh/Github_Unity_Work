@@ -4,54 +4,44 @@ using UnityEngine;
 
 public class GlobalCycleChoice : MonoBehaviour
 {
-    public Material WhiteColor;
-    public Material YellowColor;
-    public Material BlueColor;
-    public Material RedColor;
-    public Material OrangeColor;
-    public Material GreenColor;
-    public Material BlackColor;
-
     public Renderer obj1;
     public Renderer obj2;
     public Renderer obj3;
-    private Material selectedColor;
+    private Material selectedMaterial;
 
-    public int CycleImport;
     // Start is called before the first frame update
     void Start()
     {
-        CycleImport = GlobalCycle.CycleType;
-        if(CycleImport == 0)
+        if (GameManager.Instance != null)
         {
-            selectedColor = WhiteColor;
+            switch (GameManager.Instance.PlayerCycleType)
+            {
+                case 0:
+                    selectedMaterial = GameManager.Instance.WhiteMaterial;
+                    break;
+                case 1:
+                    selectedMaterial = GameManager.Instance.YellowMaterial;
+                    break;
+                case 2:
+                    selectedMaterial = GameManager.Instance.BlueMaterial;
+                    break;
+                case 3:
+                    selectedMaterial = GameManager.Instance.RedMaterial;
+                    break;
+                case 4:
+                    selectedMaterial = GameManager.Instance.OrangeMaterial;
+                    break;
+                case 5:
+                    selectedMaterial = GameManager.Instance.GreenMaterial;
+                    break;
+                case 6:
+                    selectedMaterial = GameManager.Instance.BlackMaterial;
+                    break;
+            }
+            obj1.material = selectedMaterial;
+            obj2.material = selectedMaterial;
+            obj3.material = selectedMaterial;
         }
-        else if (CycleImport == 1)
-        {
-            selectedColor = YellowColor;
-        }
-        else if (CycleImport == 2)
-        {
-            selectedColor = BlueColor;
-        }
-        else if (CycleImport == 3)
-        {
-            selectedColor = RedColor;
-        }
-        else if (CycleImport == 4)
-        {
-            selectedColor = OrangeColor;
-        }
-        else if (CycleImport == 5)
-        {
-            selectedColor = GreenColor;
-        }
-        else if (CycleImport == 6)
-        {
-            selectedColor = BlackColor;
-        }
-        obj1.material = selectedColor;
-        obj2.material = selectedColor;
-        obj3.material = selectedColor;
+        
     }
 }

@@ -4,33 +4,53 @@ using UnityEngine;
 
 public class GlobalCycle : MonoBehaviour
 {
-    public static int CycleType;
     public void WhiteCycle()
     {
-        CycleType = 0;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 0;
+        }
     }
     public void YellowCycle()
     {
-        CycleType = 1;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 1;
+        }
     }
     public void BlueCycle()
     {
-        CycleType = 2;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 2;
+        }
     }
     public void RedCycle()
     {
-        CycleType = 3;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 3;
+        }
     }
     public void OrangeCycle()
     {
-        CycleType = 4;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 4;
+        }
     }
     public void GreenCycle()
     {
-        CycleType = 5;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 5;
+        }
     }
     public void BlackCycle()
     {
-        CycleType = 6;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerCycleType = 6;
+        }
     }
 }

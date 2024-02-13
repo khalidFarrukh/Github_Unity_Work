@@ -12,33 +12,34 @@ public class RaceStartPoint : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void Awake() 
+    private void Awake()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if(GlobalCycleTrack.TrackType==1)
+        if (GameManager.Instance != null)
         {
-            rb.position = track1_start_point.position;
-            rb.rotation = track1_start_point.rotation;
-        }
-        if (GlobalCycleTrack.TrackType == 2)
-        {
-            rb.position = track2_start_point.position;
-            rb.rotation = track2_start_point.rotation;
-        }
-        if (GlobalCycleTrack.TrackType == 3)
-        {
-            rb.position = track3_start_point.position;
-            rb.rotation = track3_start_point.rotation;
-        }
-        if (GlobalCycleTrack.TrackType == 4)
-        {
-            rb.position = track4_start_point.position;
-            rb.rotation = track4_start_point.rotation;
-        }
-        if (GlobalCycleTrack.TrackType == 5)
-        {
-            rb.position = track5_start_point.position;
-            rb.rotation = track5_start_point.rotation;
+            Rigidbody rb = GetComponent<Rigidbody>();
+            switch (GameManager.Instance.PlayerCycleTrackType)
+            {
+                case 1:
+                    rb.position = track1_start_point.position;
+                    rb.rotation = track1_start_point.rotation;
+                    break;
+                case 2:
+                    rb.position = track2_start_point.position;
+                    rb.rotation = track2_start_point.rotation;
+                    break;
+                case 3:
+                    rb.position = track3_start_point.position;
+                    rb.rotation = track3_start_point.rotation;
+                    break;
+                case 4:
+                    rb.position = track4_start_point.position;
+                    rb.rotation = track4_start_point.rotation;
+                    break;
+                case 5:
+                    rb.position = track5_start_point.position;
+                    rb.rotation = track5_start_point.rotation;
+                    break;
+            }
         }
     }
 }

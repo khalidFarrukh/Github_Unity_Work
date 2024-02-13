@@ -7,11 +7,11 @@ public class SprintBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-
+        Bike_controller.isSprintbtn = true;
     }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
-
+        Bike_controller.isSprintbtn = false;
     }
 }

@@ -1,95 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerCycleAnimationController2 : MonoBehaviour
 {
+    [Header("Player Type")]
+    [SerializeField] private string PlayerType;
+
+    [Header("Player Aimator")]
     [SerializeField] private Animator playerAnim;
     [SerializeField] private Rigidbody playerRigid;
 
-    [SerializeField] private bool Up_Arrow=false,Down_Arrow = false, Left_Arrow = false, Right_Arrow = false;
+    [Header("Character Rigs")]
+    [SerializeField] private GameObject rig2;
+    [SerializeField] private GameObject rig3;
     // Update is called once per frame
     void Update()
     {
         if (playerAnim != null)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (PlayerType == "NAI")
             {
-                Up_Arrow = true;
+                if (Bike_controller.currentForwardSpeed == 0f)
+                {
+                    playerAnim.SetTrigger("cycle_idle");
+                    playerAnim.ResetTrigger("cycle_moving_forward");
+                    rig2.GetComponent<Rig>().weight = Mathf.MoveTowards(rig2.GetComponent<Rig>().weight, 0f, 2 * Time.deltaTime);
+                    rig3.GetComponent<Rig>().weight = Mathf.MoveTowards(rig3.GetComponent<Rig>().weight, 1f, 2 * Time.deltaTime);
+                }
+                else
+                {
+                    playerAnim.ResetTrigger("cycle_idle");
+                    playerAnim.SetTrigger("cycle_moving_forward");
+                    rig2.GetComponent<Rig>().weight = Mathf.MoveTowards(rig2.GetComponent<Rig>().weight, 1f, 2 * Time.deltaTime);
+                    rig3.GetComponent<Rig>().weight = Mathf.MoveTowards(rig3.GetComponent<Rig>().weight, 0f, 2 * Time.deltaTime);
+                }
             }
-            if (Input.GetKey(KeyCode.DownArrow))
+            else
             {
-                Down_Arrow = true;
+                if (AI_Bike_controller3.currentForwardSpeed == 0f)
+                {
+                    playerAnim.SetTrigger("cycle_idle");
+                    playerAnim.ResetTrigger("cycle_moving_forward");
+                    rig2.GetComponent<Rig>().weight = Mathf.MoveTowards(rig2.GetComponent<Rig>().weight, 0f, 2 * Time.deltaTime);
+                    rig3.GetComponent<Rig>().weight = Mathf.MoveTowards(rig3.GetComponent<Rig>().weight, 1f, 2 * Time.deltaTime);
+                }
+                else
+                {
+                    playerAnim.ResetTrigger("cycle_idle");
+                    playerAnim.SetTrigger("cycle_moving_forward");
+                    rig2.GetComponent<Rig>().weight = Mathf.MoveTowards(rig2.GetComponent<Rig>().weight, 1f, 2 * Time.deltaTime);
+                    rig3.GetComponent<Rig>().weight = Mathf.MoveTowards(rig3.GetComponent<Rig>().weight, 0f, 2 * Time.deltaTime);
+                }
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                Left_Arrow = true;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                Right_Arrow = true;
-            }
-
-
-            if (Up_Arrow == false && Down_Arrow == false && Left_Arrow == false && Right_Arrow == false)
-            {
-                playerAnim.SetTrigger("cycle_idle");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_left");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_right");
-                playerAnim.ResetTrigger("cycling_forward");
-                playerAnim.ResetTrigger("cycling_left");
-                playerAnim.ResetTrigger("cycling_right");
-            }
-            if (Up_Arrow == false && Down_Arrow == false && Left_Arrow == false && Right_Arrow == true)
-            {
-                playerAnim.ResetTrigger("cycle_idle");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_left");
-                playerAnim.SetTrigger("cycle_idle_handle_rotate_right");
-                playerAnim.ResetTrigger("cycling_forward");
-                playerAnim.ResetTrigger("cycling_left");
-                playerAnim.ResetTrigger("cycling_right");
-            }
-            if (Up_Arrow == false && Down_Arrow == false && Left_Arrow == true && Right_Arrow == false)
-            {
-                playerAnim.ResetTrigger("cycle_idle");
-                playerAnim.SetTrigger("cycle_idle_handle_rotate_left");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_right");
-                playerAnim.ResetTrigger("cycling_forward");
-                playerAnim.ResetTrigger("cycling_left");
-                playerAnim.ResetTrigger("cycling_right");
-            }
-            
-            
-            if (Up_Arrow == true && Down_Arrow == false && Left_Arrow == false && Right_Arrow == false)
-            {
-                playerAnim.ResetTrigger("cycle_idle");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_left");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_right");
-                playerAnim.SetTrigger("cycling_forward");
-                playerAnim.ResetTrigger("cycling_left");
-                playerAnim.ResetTrigger("cycling_right");
-            }
-            if (Up_Arrow == true && Down_Arrow == false && Left_Arrow == false && Right_Arrow == true)
-            {
-                playerAnim.ResetTrigger("cycle_idle");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_left");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_right");
-                playerAnim.ResetTrigger("cycling_forward");
-                playerAnim.ResetTrigger("cycling_left");
-                playerAnim.SetTrigger("cycling_right");
-            }
-            if (Up_Arrow == true && Down_Arrow == false && Left_Arrow == true && Right_Arrow == false)
-            {
-                playerAnim.ResetTrigger("cycle_idle");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_left");
-                playerAnim.ResetTrigger("cycle_idle_handle_rotate_right");
-                playerAnim.ResetTrigger("cycling_forward");
-                playerAnim.SetTrigger("cycling_left");
-                playerAnim.ResetTrigger("cycling_right");
-            }
-
-            
         }
-            Up_Arrow = false; Down_Arrow = false; Left_Arrow = false; Right_Arrow = false;
     }
 }

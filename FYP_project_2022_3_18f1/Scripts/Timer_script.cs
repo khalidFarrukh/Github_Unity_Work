@@ -6,7 +6,7 @@ using TMPro;
 public class Timer_script : MonoBehaviour
 {
     [SerializeField] private GameObject Timer;
-    [SerializeField] private GameObject Controls;
+    [SerializeField] private GameObject HideThisObject;
     [SerializeField] private AudioSource Timer_beep;
     [SerializeField] private AudioSource Go_beep;
     [SerializeField] private TMP_Text Text;
@@ -16,7 +16,7 @@ public class Timer_script : MonoBehaviour
     {
         PlayerCanMove = false;
         Timer.SetActive(true);
-        Controls.SetActive(false);
+        HideThisObject.SetActive(false);
     }
     private void Start()
     {
@@ -36,7 +36,7 @@ public class Timer_script : MonoBehaviour
         Go_beep.Play();
         yield return new WaitForSeconds(1.07f);
         Timer.SetActive(false);
-        Controls.SetActive(true);
+        HideThisObject.SetActive(true);
         PlayerCanMove=true;
     }
 

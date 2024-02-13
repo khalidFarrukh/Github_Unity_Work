@@ -4,60 +4,54 @@ using UnityEngine;
 
 public class AICycle_Color : MonoBehaviour
 {
-    public Material WhiteColor;
-    public Material YellowColor;
-    public Material BlueColor;
-    public Material RedColor;
-    public Material OrangeColor;
-    public Material GreenColor;
-    public Material BlackColor;
-
     public Renderer obj1;
     public Renderer obj2;
     public Renderer obj3;
-    private Material selectedColor;
-    public int CycleImport;
+    private Material selectedMaterial;
     [SerializeField] private int rn;
     // Start is called before the first frame update
     void Start()
     {
-        CycleImport = GlobalCycle.CycleType;
-        while (true)
+        if (GameManager.Instance != null)
         {
-            rn = (int) Random.Range(0f, 6f);
-            if(rn != CycleImport)
+            while (true)
             {
-                break;
+                rn = (int)Random.Range(0f, 6f);
+
+                if (rn != GameManager.Instance.PlayerCycleType)
+                {
+                    break;
+                }
+
             }
-        }
-        switch (rn)
-        {
-            case 0:
-                selectedColor = WhiteColor;
-                break;
-            case 1:
-                selectedColor = YellowColor;
-                break;
-            case 2:
-                selectedColor = BlueColor;
-                break;
-            case 3:
-                selectedColor = RedColor;
-                break;
-            case 4:
-                selectedColor = OrangeColor;
-                break;
-            case 5:
-                selectedColor = GreenColor;
-                break;
-            case 6:
-                selectedColor = BlackColor;
-                break;
-        }
+            switch (rn)
+            {
+                case 0:
+                    selectedMaterial = GameManager.Instance.WhiteMaterial;
+                    break;
+                case 1:
+                    selectedMaterial = GameManager.Instance.YellowMaterial;
+                    break;
+                case 2:
+                    selectedMaterial = GameManager.Instance.BlueMaterial;
+                    break;
+                case 3:
+                    selectedMaterial = GameManager.Instance.RedMaterial;
+                    break;
+                case 4:
+                    selectedMaterial = GameManager.Instance.OrangeMaterial;
+                    break;
+                case 5:
+                    selectedMaterial = GameManager.Instance.GreenMaterial;
+                    break;
+                case 6:
+                    selectedMaterial = GameManager.Instance.BlackMaterial;
+                    break;
+            }
 
-        obj1.material = selectedColor;
-        obj2.material = selectedColor;
-        obj3.material = selectedColor;
+            obj1.material = selectedMaterial;
+            obj2.material = selectedMaterial;
+            obj3.material = selectedMaterial;
+        }
     }
-
 }

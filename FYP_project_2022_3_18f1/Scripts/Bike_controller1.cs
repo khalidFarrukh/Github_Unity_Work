@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Bike_controller : MonoBehaviour
+public class Bike_controller1 : MonoBehaviour
 {
     [Header("RigidBody")]
     [SerializeField] private Rigidbody rb;
@@ -97,34 +97,24 @@ public class Bike_controller : MonoBehaviour
         {
             currentForwardSpeed = rb.velocity.magnitude * 3.6F;
         }
-        else if (localVel.z < 0)
+        else
         {
             currentReverseSpeed = rb.velocity.magnitude * -3.6F;
         }
-        else
-        {
-            currentForwardSpeed = 0f;
-            currentReverseSpeed = 0f;
-        }
         if (!Input.GetKey(KeyCode.S) || !isReverseBtn)
         {
-            if (currentReverseSpeed > 0 && currentForwardSpeed < maxForwadSpeed)
-            {
-                currentReverseSpeed = Mathf.Lerp(currentReverseSpeed, 0f, 3 * Time.deltaTime);
-            }
-            if (currentForwardSpeed > 0 && currentForwardSpeed < maxForwadSpeed)
+            if (currentForwardSpeed < maxForwadSpeed)
             {
                 if (!isSprintbtn)
                 {
                     maxForwadSpeed = 10f;
-                    maxMotorTorque = 10f;
+                    backWheelCollider.motorTorque = Mathf.MoveTowards(backWheelCollider.motorTorque, maxMotorTorque, Time.deltaTime * 3f);
                 }
                 else
                 {
                     maxForwadSpeed = 20f;
-                    maxMotorTorque = 15f;
+                    backWheelCollider.motorTorque = Mathf.MoveTowards(backWheelCollider.motorTorque, maxMotorTorque + 5f, Time.deltaTime * 3f);
                 }
-                backWheelCollider.motorTorque = Mathf.MoveTowards(backWheelCollider.motorTorque, maxMotorTorque, Time.deltaTime * 3f);
             }
             else
             {
@@ -133,13 +123,11 @@ public class Bike_controller : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S) || isReverseBtn)
         {
-            if (currentForwardSpeed > 0 && currentForwardSpeed < maxForwadSpeed)
+            if (currentReverseSpeed > maxReverseSpeed)
             {
-                currentForwardSpeed = Mathf.Lerp(currentForwardSpeed, 0f, 3 * Time.deltaTime);
-            }
-            if (currentReverseSpeed < 0 && currentReverseSpeed > maxReverseSpeed)
-            {
+
                 backWheelCollider.motorTorque = -maxMotorTorque;
+
             }
             else
             {

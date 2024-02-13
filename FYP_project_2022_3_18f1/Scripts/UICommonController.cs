@@ -23,11 +23,13 @@ public class UICommonController : MonoBehaviour
     {
         if (ActualMenu.activeSelf == true)
         {
+            Time.timeScale = 0f;
             ActualMenu.SetActive(false);
             optionsMenu.SetActive(true);
         }
         else
         {
+            Time.timeScale = 1f;
             ActualMenu.SetActive(true);
             optionsMenu.SetActive(false);
         }

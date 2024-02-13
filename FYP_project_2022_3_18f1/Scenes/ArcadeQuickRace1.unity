@@ -278,31 +278,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 8549a191c44c2584eac513ee9b0aa2c3,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: map 3
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 420983471}
         m_TargetAssemblyTypeName: GlobalCycleTrack, Assembly-CSharp
         m_MethodName: map3
@@ -736,10 +711,10 @@ RectTransform:
   - {fileID: 504615293}
   m_Father: {fileID: 1462633179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220, y: -217}
-  m_SizeDelta: {x: 271.19, y: 380.894}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &140989621
 GameObject:
@@ -824,32 +799,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: bd0bc0858ab4cc14695d887ebc824541,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Black
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: BlackCycle
         m_Mode: 1
@@ -1165,7 +1115,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1307,10 +1257,10 @@ RectTransform:
   - {fileID: 409727446}
   m_Father: {fileID: 420983461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1600, y: 720}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &290563950
 GameObject:
@@ -1909,7 +1859,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2123,15 +2073,15 @@ GameObject:
   - component: {fileID: 420983458}
   - component: {fileID: 420983462}
   - component: {fileID: 420983469}
+  - component: {fileID: 420983465}
+  - component: {fileID: 420983468}
   - component: {fileID: 420983463}
   - component: {fileID: 420983464}
-  - component: {fileID: 420983465}
   - component: {fileID: 420983467}
   - component: {fileID: 420983466}
-  - component: {fileID: 420983468}
-  - component: {fileID: 420983470}
-  - component: {fileID: 420983471}
   - component: {fileID: 420983472}
+  - component: {fileID: 420983471}
+  - component: {fileID: 420983470}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2168,11 +2118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1600, y: 720}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2196,7 +2146,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2346,8 +2296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a8c012d046b84cb4ecce2d282d614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangedColorName: {fileID: 1311613677}
-  changedColorImage: {fileID: 1565625389}
+  ChoosedColorName: {fileID: 1311613677}
+  ChoosedColorImage: {fileID: 1565625389}
 --- !u!114 &420983469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2369,9 +2319,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 420983457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b350e8f650bb46478a3e2bc917915b4, type: 3}
+  m_Script: {fileID: 11500000, guid: f12b0342ba2b6e847830fec402d8b3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playbtn: {fileID: 1243496589}
 --- !u!114 &420983471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2393,10 +2344,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 420983457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12b0342ba2b6e847830fec402d8b3e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b350e8f650bb46478a3e2bc917915b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playbtn: {fileID: 1243496589}
 --- !u!1 &444632970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,32 +2430,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: c967fdd7ecd63d94fa713a20b3fe726a,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: White
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: WhiteCycle
         m_Mode: 1
@@ -6178,32 +6103,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: d55530f4e0ada4b408a15c309bdfd9dd,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Green
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: GreenCycle
         m_Mode: 1
@@ -7531,10 +7431,10 @@ RectTransform:
   - {fileID: 234312780}
   m_Father: {fileID: 1462633179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1100, y: -217}
-  m_SizeDelta: {x: 271.19, y: 380.894}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1267907906
 GameObject:
@@ -7691,31 +7591,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 72d13ed93d5d62b43a9629f6a979cb22,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: map 5
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 420983471}
         m_TargetAssemblyTypeName: GlobalCycleTrack, Assembly-CSharp
         m_MethodName: map5
@@ -7839,7 +7714,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8681,31 +8556,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 9e13482e01df9da4ba4e8189b385e805,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: map 2
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 420983471}
         m_TargetAssemblyTypeName: GlobalCycleTrack, Assembly-CSharp
         m_MethodName: map2
@@ -8807,6 +8657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1462633179}
+  - component: {fileID: 1462633180}
   m_Layer: 5
   m_Name: cycle_related
   m_TagString: Untagged
@@ -8836,6 +8687,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1462633180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462633178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1479931396
 GameObject:
   m_ObjectHideFlags: 0
@@ -8919,31 +8796,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 0347991a0962c4249bce221c3bb715d7,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: map 4
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 420983471}
         m_TargetAssemblyTypeName: GlobalCycleTrack, Assembly-CSharp
         m_MethodName: map4
@@ -9414,7 +9266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: -116.99991}
+  m_AnchoredPosition: {x: 0, y: -117}
   m_SizeDelta: {x: -280, y: -286}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1583199268
@@ -9711,6 +9563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675021362}
   - component: {fileID: 1675021363}
+  - component: {fileID: 1675021364}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -9790,7 +9643,31 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1675021364}
+        m_TargetAssemblyTypeName: masterVolume, Assembly-CSharp
+        m_MethodName: OnValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1675021364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675021361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2985160d6bf091c4dbc261e2b3b33062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1685098949
 GameObject:
   m_ObjectHideFlags: 0
@@ -9894,7 +9771,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10586,8 +10463,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000091552734}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0009765625, y: 0}
+  m_SizeDelta: {x: 0.0024414062, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1822103680
 GameObject:
@@ -10829,31 +10706,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 8fe03a49f9de9474a93c74726c2e9f9d,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983465}
-        m_TargetAssemblyTypeName: MapChooseBtn, Assembly-CSharp
-        m_MethodName: SetMapName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: map 1
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 420983471}
         m_TargetAssemblyTypeName: GlobalCycleTrack, Assembly-CSharp
         m_MethodName: map1
@@ -11047,32 +10899,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 84e1fd55792b1dc42a7bdab9cf00c4db,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Blue
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: BlueCycle
         m_Mode: 1
@@ -11983,32 +11810,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 2d0a2549ab295d642acac9f58945569a,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Red
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: RedCycle
         m_Mode: 1
@@ -12333,32 +12135,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: 64b60d7213a14934e9c22a526f1a0f9a,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Yellow
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: YellowCycle
         m_Mode: 1
@@ -12461,32 +12238,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorImage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2800000, guid: f30ed12e65bb32d4bba685b2ebd58795,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983468}
-        m_TargetAssemblyTypeName: ColorChangeBtn, Assembly-CSharp
-        m_MethodName: SetColorName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Orange
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 420983470}
+      - m_Target: {fileID: 420983472}
         m_TargetAssemblyTypeName: GlobalCycle, Assembly-CSharp
         m_MethodName: OrangeCycle
         m_Mode: 1
@@ -12577,10 +12329,10 @@ RectTransform:
   - {fileID: 1311613676}
   m_Father: {fileID: 1462633179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 660, y: -217}
-  m_SizeDelta: {x: 271.19, y: 380.894}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -10,50 +10,38 @@ public class GlobalCycleTrackChoice : MonoBehaviour
     public GameObject Track4;
     public GameObject Track5;
 
-    public int TrackImport;
     // Start is called before the first frame update
     void Start()
     {
-        TrackImport = GlobalCycleTrack.TrackType;
-        if(TrackImport == 1)
+        Track1.SetActive(false);
+        Track2.SetActive(false);
+        Track3.SetActive(false);
+        Track4.SetActive(false);
+        Track5.SetActive(false);
+        if (GameManager.Instance != null)
         {
-            Track1.SetActive(true);
-            Track2.SetActive(false);
-            Track3.SetActive(false);
-            Track4.SetActive(false);
-            Track5.SetActive(false);
+            switch (GameManager.Instance.PlayerCycleTrackType)
+            {
+                case 1:
+                    Track1.SetActive(true);
+                    break;
+                case 2:
+                    Track2.SetActive(true);
+                    break;
+                case 3:
+                    Track3.SetActive(true);
+                    break;
+                case 4:
+                    Track4.SetActive(true);
+                    break;
+                case 5:
+                    Track5.SetActive(true);
+                    break;
+            }
         }
-        if (TrackImport == 2)
+        else
         {
             Track1.SetActive(false);
-            Track2.SetActive(true);
-            Track3.SetActive(false);
-            Track4.SetActive(false);
-            Track5.SetActive(false);
-        }
-        if (TrackImport == 3)
-        {
-            Track1.SetActive(false);
-            Track2.SetActive(false);
-            Track3.SetActive(true);
-            Track4.SetActive(false);
-            Track5.SetActive(false);
-        }
-        if (TrackImport == 4)
-        {
-            Track1.SetActive(false);
-            Track2.SetActive(false);
-            Track3.SetActive(false);
-            Track4.SetActive(true);
-            Track5.SetActive(false);
-        }
-        if (TrackImport == 5)
-        {
-            Track1.SetActive(false);
-            Track2.SetActive(false);
-            Track3.SetActive(false);
-            Track4.SetActive(false);
-            Track5.SetActive(true);
         }
     }
 }
